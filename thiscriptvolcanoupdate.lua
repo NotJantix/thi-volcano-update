@@ -247,7 +247,7 @@ end
 function AutoRebirth()
     while task.wait() and Config.AutoRebirth do
         local MyCoins, MyTools = GetData("Coins"), GetData("ToolsOwned")
-        local RebirthCost = 69000000000
+        local RebirthCost = 100000000000
 
         if MyCoins >= RebirthCost and MyTools["Driller"] then  
             Config.CanRebirth = true
