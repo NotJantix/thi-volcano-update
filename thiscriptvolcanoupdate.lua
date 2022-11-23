@@ -250,7 +250,7 @@ function AutoRebirth()
         local MyCoins, MyTools = GetData("Coins"), GetData("ToolsOwned")
         local RebirthCost = 500000000
 	if RebirthValue >= 25 then
-	    RebirthCost = 500000000*RebirthValue
+	    RebirthCost = 50000000*RebirthValue
 	end
 
         if MyCoins >= RebirthCost and MyTools["Jackhammer"] or MyTools["Driller"] then  
