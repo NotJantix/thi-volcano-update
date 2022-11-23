@@ -22,6 +22,7 @@ local Player = Players.LocalPlayer
 local IslandInfo = require(ReplicatedStorage.Modules.IslandInfo)
 local PetItems = require(ReplicatedStorage.Modules.PetItems)
 local Shorten = loadstring(game:HttpGet("https://raw.githubusercontent.com/uzu01/public/main/util/shorten.lua"))()
+local RebirthValue = Player.leaderstats.Rebirths.Value
 
 local PosTable = {
 	["-X"] = Vector3.new(-1, 0, 0),
@@ -247,9 +248,12 @@ end
 function AutoRebirth()
     while task.wait() and Config.AutoRebirth do
         local MyCoins, MyTools = GetData("Coins"), GetData("ToolsOwned")
-        local RebirthCost = 100000000000
+        local RebirthCost = 500000000
+	if RebirthValue >= 25 then
+	    RebirthCost = 500000000*RebirthValue
+	end
 
-        if MyCoins >= RebirthCost and MyTools["Driller"] then  
+        if MyCoins >= RebirthCost and MyTools["Jackhammer"] or MyTools["Driller"] then  
             Config.CanRebirth = true
             Teleport(CFrame.new(2280, 67, 667))
             task.wait(2)
@@ -308,7 +312,7 @@ function AutoBuyIslands()
         local AreasUnlocked, MyCoins, MyTools = GetData("AreasUnlocked"), GetData("Coins"), GetData("ToolsOwned")
 
         for i, v in pairs(IslandInfo.OtherInfo) do
-            if not table.find(AreasUnlocked,i) and MyCoins*1.5 >= v.UnlockCost.Coins and MyTools[v.ToolNeededToUnlock] then
+            if not table.find(AreasUnlocked,i) and MyCoins*RebirthValue*0.1 >= v.UnlockCost.Coins and MyTools[v.ToolNeededToUnlock] then
                 ReplicatedStorage.Events.UIAction:FireServer("UnlockIsland", i)
 
                 Teleport(IslandPos[i])
