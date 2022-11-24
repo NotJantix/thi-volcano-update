@@ -248,12 +248,9 @@ end
 function AutoRebirth()
     while task.wait() and Config.AutoRebirth do
         local MyCoins, MyTools = GetData("Coins"), GetData("ToolsOwned")
-        local RebirthCost = 500000000
-	if RebirthValue >= 25 then
-	    RebirthCost = 50000000*RebirthValue*0.1
-	end
-
-        if MyCoins >= RebirthCost and MyTools["Jackhammer"] or MyTools["Driller"] then  
+	RebirthCost = 2760000000*RebirthValue
+		
+        if MyCoins >= RebirthCost and (MyTools["Jackhammer"] or MyTools["Driller"]) then  
             Config.CanRebirth = true
             Teleport(CFrame.new(2280, 67, 667))
             task.wait(2)
