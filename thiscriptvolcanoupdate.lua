@@ -310,7 +310,7 @@ function AutoBuyIslands()
         local AreasUnlocked, MyCoins, MyTools = GetData("AreasUnlocked"), GetData("Coins"), GetData("ToolsOwned")
 	RebirthValue = Player.leaderstats.Rebirths.Value
         for i, v in pairs(IslandInfo.OtherInfo) do
-            if not table.find(AreasUnlocked,i) and MyCoins >= v.UnlockCost.Coins*RebirthValue*0.1 and MyTools[v.ToolNeededToUnlock] then
+            if not table.find(AreasUnlocked,i) and MyCoins >= v.UnlockCost.Coins*RebirthValue*0.075 and MyTools[v.ToolNeededToUnlock] then
                 ReplicatedStorage.Events.UIAction:FireServer("UnlockIsland", i)
 
                 Teleport(IslandPos[i])
