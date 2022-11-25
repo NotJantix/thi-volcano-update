@@ -248,7 +248,7 @@ end
 function AutoRebirth()
     while task.wait() and Config.AutoRebirth do
         local MyCoins, MyTools = GetData("Coins"), GetData("ToolsOwned")
-	RebirthValue = Player.leaderstats.Rebirths.Value
+	RebirthValue = Player.leaderstats.Rebirths.Value + 1
 	RebirthCost = 2760000000*RebirthValue
 		
         if MyCoins >= RebirthCost and MyTools["Jackhammer"] or MyTools["Driller"] then  
@@ -308,7 +308,7 @@ end
 function AutoBuyIslands()
     while task.wait() and Config.AutoBuyIslands do
         local AreasUnlocked, MyCoins, MyTools = GetData("AreasUnlocked"), GetData("Coins"), GetData("ToolsOwned")
-	RebirthValue = Player.leaderstats.Rebirths.Value
+	RebirthValue = Player.leaderstats.Rebirths.Value + 1
         for i, v in pairs(IslandInfo.OtherInfo) do
             if not table.find(AreasUnlocked,i) and MyCoins >= v.UnlockCost.Coins*RebirthValue*0.075 and MyTools[v.ToolNeededToUnlock] then
                 ReplicatedStorage.Events.UIAction:FireServer("UnlockIsland", i)
