@@ -251,7 +251,7 @@ function AutoRebirth()
 	RebirthValue = Player.leaderstats.Rebirths.Value
 	RebirthCost = 2760000000*RebirthValue
 		
-        if MyCoins >= RebirthCost and (MyTools["Jackhammer"] or MyTools["Driller"]) then  
+        if MyCoins >= RebirthCost and MyTools["Jackhammer"] or MyTools["Driller"] then  
             Config.CanRebirth = true
             Teleport(CFrame.new(2280, 67, 667))
             task.wait(2)
