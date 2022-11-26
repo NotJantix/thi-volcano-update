@@ -251,10 +251,22 @@ function AutoRebirth()
 	RebirthValue = Player.leaderstats.Rebirths.Value + 1
 	RebirthCost = 2760000000*RebirthValue
 		
-        if MyCoins >= RebirthCost then
-	    if MyTools == ["Jackhammer"] or ["Driller"] then
+        if MyCoins >= RebirthCost and MyTools["Driller"] then
+	    if RebirthValue >= 25 then
                 Config.CanRebirth = true
                 Teleport(CFrame.new(2280, 67, 667))
+                task.wait(2)
+                ReplicatedStorage.Events.UIAction:FireServer("Rebirth")
+                task.wait(2)
+                Options.SelectedIsland:SetValue("Main Island")
+                Config.CanRebirth = false
+	    end
+        end
+		
+	if MyCoins >= RebirthCost and MyTools["Jackhammer"] then
+	    if RebirthValue < 25 then
+                Config.CanRebirth = true
+                Teleport(CFrame.new(753, 78, 2065.5))
                 task.wait(2)
                 ReplicatedStorage.Events.UIAction:FireServer("Rebirth")
                 task.wait(2)
